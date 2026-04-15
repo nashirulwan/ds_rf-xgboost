@@ -1,16 +1,16 @@
 # Data
 
-Dataset utama berasal dari Kaggle:
+The main dataset is from Kaggle:
 
 https://www.kaggle.com/datasets/sampadab17/network-intrusion-detection
 
-Simpan file berikut ke folder `data/raw/` sebelum menjalankan notebook:
+Place the following files in `data/raw/` before running the notebooks:
 
 - `Train_data.csv`
 - `Test_data.csv`
 
-Catatan:
+Notes:
 
-- `Train_data.csv` memiliki label target `class` dan digunakan untuk training/evaluasi.
-- `Test_data.csv` tidak memiliki label target sehingga tidak digunakan untuk menghitung metrik evaluasi.
-- File CSV mentah tidak disimpan di Git repository.
+- `Train_data.csv` contains the target label `class` and is used for training/evaluation.
+- `Test_data.csv` does not contain the target label, so it is not used for metric calculation.
+- Raw CSV files are not stored in the Git repository.

@@ -1,49 +1,49 @@
 # Network Intrusion Detection
 
-Project akhir Data Science:
+Data Science course project:
 
-**Perbandingan Algoritma Random Forest dan XGBoost untuk Klasifikasi Normal dan Anomali pada Dataset Network Intrusion Detection**
+**A Comparison of Random Forest and XGBoost for Normal and Anomaly Classification on the Network Intrusion Detection Dataset**
 
 ## Environment
 
-Jalankan JupyterLab dari environment Nix:
+Run JupyterLab from the Nix development environment:
 
 ```bash
 nix develop --command jupyter lab
 ```
 
-Atau masuk shell terlebih dahulu:
+Or enter the development shell first:
 
 ```bash
 nix develop
 jupyter lab
 ```
 
-## Struktur Folder
+## Project Structure
 
-- `data/raw/`: dataset asli dari Kaggle.
-- `data/processed/`: dataset hasil preprocessing jika perlu disimpan.
-- `notebooks/`: notebook eksperimen dan analisis.
-- `outputs/figures/`: gambar hasil visualisasi.
-- `outputs/models/`: model tersimpan jika diperlukan.
-- `reports/`: draft laporan atau catatan penulisan.
+- `data/raw/`: original dataset files from Kaggle.
+- `data/processed/`: processed datasets, if needed.
+- `notebooks/`: experiment and analysis notebooks.
+- `outputs/figures/`: generated visualization outputs.
+- `outputs/models/`: saved model artifacts, if needed.
+- `reports/`: report drafts or writing notes.
 
 ## Dataset
 
-Sumber dataset:
+Dataset source:
 
 https://www.kaggle.com/datasets/sampadab17/network-intrusion-detection
 
-Simpan file CSV dari Kaggle ke folder `data/raw/`.
+Download the CSV files from Kaggle and place them in `data/raw/`.
 
-File yang digunakan:
+Files used:
 
-- `Train_data.csv`: data berlabel, digunakan untuk training dan evaluasi dengan train-test split internal.
-- `Test_data.csv`: data tanpa label target, tidak digunakan untuk menghitung metrik evaluasi.
+- `Train_data.csv`: labeled data used for training and evaluation with an internal train-test split.
+- `Test_data.csv`: unlabeled data, not used for metric calculation.
 
-## Alur Metodologi
+## Methodology
 
-Project mengikuti metodologi Data Science pada materi kuliah:
+This project follows the Data Science methodology used in the course:
 
 1. Business Understanding
 2. Data Understanding
@@ -51,10 +51,10 @@ Project mengikuti metodologi Data Science pada materi kuliah:
 4. Modeling
 5. Model Evaluation
 
-## Fokus Eksperimen
+## Experiment Focus
 
-Target utama yang disarankan:
+Main experiment setup:
 
 - Binary classification: `normal` vs `anomalous`
-- Model pembanding: Random Forest dan XGBoost
-- Metrik evaluasi: accuracy, precision, recall/sensitivity, specificity, F1-score, confusion matrix, dan ROC-AUC
+- Compared models: Random Forest and XGBoost
+- Evaluation metrics: accuracy, precision, recall/sensitivity, specificity, F1-score, confusion matrix, and ROC-AUC
