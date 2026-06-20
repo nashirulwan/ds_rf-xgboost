@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Infografis Network Intrusion Detection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --base:#1e1e2e;--mantle:#181825;--crust:#11111b;
+  --surface0:#313244;--surface1:#45475a;--surface2:#585b70;
+  --text:#cdd6f4;--subtext1:#bac2de;--subtext0:#a6adc8;--overlay:#7f849c;
+  --blue:#89b4fa;--lavender:#b4befe;--sapphire:#74c7ec;--sky:#89dceb;
+  --teal:#94e2d5;--green:#a6e3a1;--yellow:#f9e2af;--peach:#fab387;
+  --red:#f38ba8;--mauve:#cba6f7;--pink:#f5c2e7;
+  --fd:'Chakra Petch',sans-serif;--fb:'Outfit',sans-serif;--fm:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d0d14;font-family:var(--fb);color:var(--text);display:flex;justify-content:center;padding:32px 0;-webkit-font-smoothing:antialiased}
+.poster{position:relative;width:842px;height:1290px;
+  background:
+    radial-gradient(circle at 14% 6%,rgba(203,166,247,.19),transparent 36%),
+    radial-gradient(circle at 90% 15%,rgba(137,180,250,.17),transparent 38%),
+    radial-gradient(circle at 82% 72%,rgba(148,226,213,.14),transparent 40%),
+    radial-gradient(circle at 7% 94%,rgba(245,194,231,.11),transparent 38%),
+    radial-gradient(circle at 52% 48%,rgba(203,166,247,.05),transparent 50%),
+    var(--base);
+  overflow:hidden;border-radius:20px;box-shadow:0 28px 85px rgba(0,0,0,.65)}
+.poster::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(205,214,244,.024) 1px,transparent 1px),linear-gradient(90deg,rgba(205,214,244,.024) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none}
+.poster::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 42%,transparent 55%,rgba(13,13,20,.52) 100%);pointer-events:none}
+.inner{position:relative;z-index:2;padding:7px 26px 50px}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;gap:9px;font-family:var(--fm);font-size:9px;color:var(--overlay);margin-bottom:22px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.r{background:var(--red)}.dot.y{background:var(--yellow)}.dot.g{background:var(--green)}
+.topbar .path{margin-left:8px;color:var(--subtext0)}
+.topbar .blink{color:var(--green);animation:blink 1.2s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.topbar .right{margin-left:auto;color:var(--overlay)}
+
+/* HEADER */
+.eyebrow{font-family:var(--fm);font-size:7px;letter-spacing:3px;color:var(--mauve);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:32px;height:2px;background:var(--mauve);border-radius:2px}
+h1{font-family:var(--fd);font-weight:700;font-size:28px;line-height:1.03;color:var(--text);margin-bottom:7px}
+h1 .accent{background:linear-gradient(118deg,var(--mauve),var(--blue) 52%,var(--sky));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{font-size:9px;color:var(--subtext0);font-weight:300;max-width:820px;line-height:1.4}
+.byline{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.chip{font-family:var(--fm);font-size:9px;padding:6px 13px;border-radius:999px;background:rgba(49,50,68,.6);border:1px solid var(--surface1);color:var(--subtext1)}
+.chip b{color:var(--lavender);font-weight:500}
+
+/* LEGEND */
+.legend-row{display:flex;gap:20px;align-items:center;margin-top:9px;font-family:var(--fm);font-size:8.5px;color:var(--subtext0)}
+.leg{display:flex;align-items:center;gap:7px}
+.legdot{width:10px;height:10px;border-radius:3px}
+.ld-dt{background:var(--green)}.ld-rf{background:var(--sapphire)}.ld-xgb{background:var(--mauve)}
+
+/* BLOCK */
+.block{margin-bottom:9px}
+.sec-label{font-family:var(--fm);font-size:7px;color:var(--peach);letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+.sec-label .num{color:var(--crust);background:var(--peach);font-weight:700;width:16px;height:16px;border-radius:5px;display:grid;place-items:center;font-size:8.5px}
+
+/* CARD */
+.card{background:linear-gradient(155deg,rgba(49,50,68,.48),rgba(24,24,37,.38));border:1px solid rgba(88,91,112,.48);border-radius:14px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(205,214,244,.22),transparent)}
+
+/* MISSION */
+.mission{padding:10px 18px;display:flex;gap:22px;align-items:center}
+.mission .glyph{font-family:var(--fm);font-size:34px;color:var(--red);flex-shrink:0;line-height:1;opacity:.9}
+.mission p{font-size:15.5px;line-height:1.4;color:var(--subtext1)}
+.mission p b{color:var(--red);font-weight:600}
+.mission p .ok{color:var(--green);font-weight:600}
+
+/* DATA */
+.data-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1.3fr;gap:12px}
+.stat{padding:26px 22px}
+.stat .big{font-family:var(--fd);font-weight:700;font-size:25px;line-height:1;background:linear-gradient(120deg,var(--blue),var(--sky));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .lbl{font-family:var(--fm);font-size:9px;color:var(--subtext0);margin-top:8px;letter-spacing:.5px}
+.split{display:flex;align-items:center;gap:16px}
+.donut{width:62px;height:62px;border-radius:50%;flex-shrink:0;background:conic-gradient(var(--blue) 0 53.4%,var(--mauve) 53.4% 100%);position:relative}
+.donut::after{content:"";position:absolute;inset:9px;border-radius:50%;background:linear-gradient(155deg,rgba(49,50,68,.95),rgba(24,24,37,.95))}
+.split .dleg{font-family:var(--fm);font-size:9px;line-height:1.85}
+.split .dleg .k{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:middle}
+.split .dleg .kn{background:var(--blue)}.split .dleg .ka{background:var(--mauve)}
+.split .dleg b{color:var(--text)}
+
+/* MODELS */
+.models{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.model{padding:13px 12px;display:flex;flex-direction:column;gap:6px}
+.model .wm{position:absolute;right:14px;bottom:10px;opacity:.065;pointer-events:none}
+.model .idx{font-family:var(--fm);font-size:8px;color:var(--overlay)}
+.model .mname{font-family:var(--fd);font-weight:600;font-size:16px}
+.model .tag{font-family:var(--fm);font-size:8px;padding:4px 10px;border-radius:999px;display:inline-block;width:fit-content}
+.model .desc{font-size:7px;line-height:1.45;color:var(--subtext0)}
+.model .params{font-family:var(--fm);font-size:8px;color:var(--overlay);margin-top:2px;line-height:1.7}
+.model .params code{color:var(--subtext0)}
+.m1 .mname{color:var(--green)}.m1 .tag{background:rgba(166,227,161,.14);color:var(--green);border:1px solid rgba(166,227,161,.3)}
+.m2 .mname{color:var(--sapphire)}.m2 .tag{background:rgba(116,199,236,.14);color:var(--sapphire);border:1px solid rgba(116,199,236,.3)}
+.m3 .mname{color:var(--mauve)}.m3 .tag{background:rgba(203,166,247,.14);color:var(--mauve);border:1px solid rgba(203,166,247,.3)}
+
+/* PIPELINE */
+.pipeline{display:flex;align-items:stretch}
+.step{flex:1;padding:12px 12px;text-align:center}
+.step .ico{font-family:var(--fm);font-size:8px;color:var(--peach);letter-spacing:1px;margin-bottom:7px}
+.step .st{font-family:var(--fd);font-weight:600;font-size:8.5px;color:var(--text);margin-bottom:4px}
+.step .sd{font-size:7px;color:var(--subtext0);line-height:1.4}
+.arr{display:grid;place-items:center;color:var(--surface1);font-size:10px;padding:0 4px;font-family:var(--fm)}
+
+/* RESULTS */
+.results{display:grid;grid-template-columns:1.45fr 0.88fr 0.88fr;gap:6px}
+.metric-table{padding:10px 13px}
+.metric-table h3{font-family:var(--fd);font-weight:600;font-size:8.5px;margin-bottom:13px;color:var(--text)}
+.mrow{margin-bottom:5px}
+.mrow .mlabel{font-family:var(--fm);font-size:7px;color:var(--subtext1);margin-bottom:5px}
+.bars{display:flex;flex-direction:column;gap:4px}
+.bar{height:9px;border-radius:4px;position:relative;background:rgba(49,50,68,.5)}
+.bar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
+.bar .v{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--fm);font-size:7px;color:var(--crust);font-weight:700}
+.f-dt{background:var(--green)}.f-rf{background:var(--sapphire)}.f-xgb{background:var(--mauve)}
+.bar-note{font-family:var(--fm);font-size:7.5px;color:var(--surface2);margin-top:9px}
+
+/* RIGHT PANEL */
+.right-panel{padding:10px 13px;display:flex;flex-direction:column;gap:16px}
+.right-panel h3{font-family:var(--fd);font-weight:600;font-size:16px;color:var(--text);margin-bottom:11px}
+.errnums{display:flex;gap:6px}
+.errnums .en{flex:1;text-align:center;padding:10px 5px;border-radius:9px;background:rgba(24,24,37,.55);border:1px solid var(--surface0)}
+.errnums .en .n{font-family:var(--fd);font-weight:700;font-size:7px}
+.errnums .en .m{font-family:var(--fm);font-size:7.5px;color:var(--overlay);margin-top:3px}
+.en.dt .n{color:var(--green)}.en.rf .n{color:var(--sapphire)}.en.xgb .n{color:var(--mauve)}
+.err-type{font-family:var(--fm);font-size:9px;margin-bottom:7px}
+.err-type.fp{color:var(--yellow)}.err-type.fn{color:var(--red)}
+.err-block{padding-bottom:8px;border-bottom:1px solid rgba(88,91,112,.3)}
+
+/* CV TABLE */
+.cv-title{font-family:var(--fm);font-size:8.5px;color:var(--peach);margin-bottom:7px;letter-spacing:.5px}
+.cv-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(88,91,112,.2)}
+.cv-row:last-child{border-bottom:none}
+.cv-row .cname{font-family:var(--fm);font-size:7px}
+.cv-row .cscore{font-family:var(--fd);font-weight:600;font-size:8.5px}
+.cv-row .cstd{font-family:var(--fm);font-size:8px;color:var(--overlay)}
+.cv-row.winner-row{background:rgba(203,166,247,.08);border-radius:8px;padding:7px 8px;margin:0 -8px}
+.cv-row.winner-row .cname{color:var(--mauve)}
+.cv-row.winner-row .cscore{color:var(--mauve)}
+.cv-dt .cname{color:var(--green)}.cv-dt .cscore{color:var(--green)}
+.cv-rf .cname{color:var(--sapphire)}.cv-rf .cscore{color:var(--sapphire)}
+
+/* WINNER */
+.winner{padding:14px 20px;display:flex;align-items:center;gap:28px;
+  background:linear-gradient(132deg,rgba(203,166,247,.17),rgba(137,180,250,.08) 58%,rgba(148,226,213,.10));
+  border:1px solid rgba(203,166,247,.42)}
+.winner .crown{font-family:var(--fm);font-size:7px;color:var(--mauve);letter-spacing:2px;margin-bottom:6px}
+.winner .wname{font-family:var(--fd);font-weight:700;font-size:31px;line-height:1;background:linear-gradient(120deg,var(--mauve),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.winner .wdesc{font-size:10px;color:var(--subtext1);margin-top:11px;line-height:1.5;max-width:560px}
+.winner .wstats{margin-left:auto;text-align:right;flex-shrink:0}
+.winner .wstats .f1{font-family:var(--fd);font-weight:700;font-size:34px;color:var(--text);line-height:1}
+.winner .wstats .pm{font-size:10px;color:var(--teal)}
+.winner .wstats .f1lbl{font-family:var(--fm);font-size:8px;color:var(--overlay);margin-top:5px;letter-spacing:1px}
+
+/* FEATURES */
+.features{display:flex;gap:7px}
+.feat-card{flex:1;padding:11px 14px}
+.feat-card .ftitle{font-family:var(--fm);font-size:8.5px;color:var(--peach);margin-bottom:10px;letter-spacing:.5px}
+.feat-list{display:flex;flex-direction:column;gap:6px}
+.feat-item{display:flex;align-items:center;gap:9px;font-family:var(--fm);font-size:9px}
+.feat-bar{height:6px;border-radius:3px;background:rgba(49,50,68,.5);flex:1}
+.feat-fill{height:100%;border-radius:3px}
+.feat-pct{font-size:8px;color:var(--overlay);min-width:36px;text-align:right}
+.feat-name{min-width:80px;color:var(--subtext1);font-size:8.5px}
+
+.feat-panel{padding:13px 15px;display:flex;flex-direction:column}
+.fp-title{font-family:var(--fm);font-size:8.5px;color:var(--peach);margin-bottom:6px;letter-spacing:.5px}
+.fp-subtitle{font-family:var(--fm);font-size:8.5px;color:var(--subtext0);margin-bottom:9px;font-weight:500}
+.fp-note{font-size:8px;color:var(--overlay);line-height:1.4;margin-top:8px}
+.feat-list{display:flex;flex-direction:column;gap:5px}
+.feat-item{display:flex;align-items:center;gap:8px;font-family:var(--fm);font-size:8px}
+.feat-bar{height:6px;border-radius:3px;background:rgba(49,50,68,.5);flex:1}
+.feat-fill{height:100%;border-radius:3px}
+.feat-pct{font-size:8px;color:var(--overlay);min-width:34px;text-align:right}
+.feat-name{min-width:65px;color:var(--subtext1);font-size:8px;white-space:nowrap}
+
+/* === NEON & GLOW EFFECTS === */
+h1 .accent{filter:drop-shadow(0 0 12px rgba(137,180,250,.35))}
+.stat .big{filter:drop-shadow(0 0 10px rgba(137,180,250,.3))}
+.sec-label .num{box-shadow:0 0 12px rgba(250,179,135,.35),0 0 4px rgba(250,179,135,.2) inset}
+.winner{
+  border-color:rgba(203,166,247,.55);
+  box-shadow:0 0 0 1px rgba(203,166,247,.15),
+             0 0 30px rgba(203,166,247,.18),
+             0 0 80px rgba(203,166,247,.08),
+             inset 0 0 40px rgba(203,166,247,.04)
+}
+.winner .wname{filter:drop-shadow(0 0 16px rgba(203,166,247,.5))}
+.winner .f1{text-shadow:0 0 24px rgba(148,226,213,.45),0 0 8px rgba(148,226,213,.3)}
+.card.model.m3{
+  border-color:rgba(203,166,247,.5);
+  box-shadow:0 0 20px rgba(203,166,247,.12),inset 0 0 24px rgba(203,166,247,.04)
+}
+.bar .fill.f-xgb{box-shadow:0 0 8px rgba(203,166,247,.5),0 0 16px rgba(203,166,247,.2)}
+.bar .fill.f-rf{box-shadow:0 0 8px rgba(116,199,236,.4),0 0 14px rgba(116,199,236,.15)}
+.bar .fill.f-dt{box-shadow:0 0 6px rgba(166,227,161,.35)}
+.en.rf .n{text-shadow:0 0 16px rgba(116,199,236,.6),0 0 32px rgba(116,199,236,.2)}
+.cv-row.winner-row{
+  box-shadow:0 0 12px rgba(203,166,247,.2);
+  border:1px solid rgba(203,166,247,.25)
+}
+.cv-row.winner-row .cscore{text-shadow:0 0 12px rgba(203,166,247,.5)}
+.winner .wstats .pm{text-shadow:0 0 12px rgba(148,226,213,.5)}
+.donut{box-shadow:0 0 20px rgba(137,180,250,.2),0 0 8px rgba(203,166,247,.15)}
+
+/* === NETWORK BG === */
+.netbg{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.07}
+
+/* === AURORA PULSE === */
+.aurora-pulse{
+  position:absolute;top:-10%;left:-10%;width:120%;height:120%;
+  background:
+    radial-gradient(ellipse at 20% 30%,rgba(203,166,247,.06),transparent 50%),
+    radial-gradient(ellipse at 80% 70%,rgba(137,180,250,.05),transparent 50%);
+  z-index:1;pointer-events:none;
+  animation:aurorapulse 9s ease-in-out infinite;
+}
+@keyframes aurorapulse{
+  0%,100%{transform:scale(1) rotate(0deg);opacity:1}
+  33%{transform:scale(1.06) rotate(2deg);opacity:.7}
+  67%{transform:scale(.96) rotate(-1deg);opacity:.9}
+}
+
+/* === SCANLINES === */
+.poster::before{
+  background-image:
+    linear-gradient(rgba(205,214,244,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(205,214,244,.022) 1px,transparent 1px),
+    repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px);
+  background-size:44px 44px,44px 44px,100% 4px
+}
+
+
+/* === UNIVERSAL GLOW === */
+/* model card borders */
+.card.model.m1{border-color:rgba(166,227,161,.45);box-shadow:0 0 16px rgba(166,227,161,.10),inset 0 0 20px rgba(166,227,161,.03)}
+.card.model.m2{border-color:rgba(116,199,236,.45);box-shadow:0 0 16px rgba(116,199,236,.10),inset 0 0 20px rgba(116,199,236,.03)}
+.card.model.m3{border-color:rgba(203,166,247,.55);box-shadow:0 0 22px rgba(203,166,247,.14),inset 0 0 24px rgba(203,166,247,.05)}
+/* model name glow */
+.m1 .mname{text-shadow:0 0 14px rgba(166,227,161,.5)}
+.m2 .mname{text-shadow:0 0 14px rgba(116,199,236,.5)}
+.m3 .mname{text-shadow:0 0 18px rgba(203,166,247,.6)}
+/* model tag glow */
+.m1 .tag{box-shadow:0 0 8px rgba(166,227,161,.25)}
+.m2 .tag{box-shadow:0 0 8px rgba(116,199,236,.25)}
+.m3 .tag{box-shadow:0 0 10px rgba(203,166,247,.3)}
+/* stat numbers */
+.stat .big{filter:drop-shadow(0 0 10px rgba(137,180,250,.35))}
+/* title glow */
+h1 .accent{filter:drop-shadow(0 0 14px rgba(137,180,250,.4))}
+/* section badge glow */
+.sec-label .num{box-shadow:0 0 14px rgba(250,179,135,.4),0 0 4px rgba(250,179,135,.25) inset}
+/* bar fill glows */
+.bar .fill.f-dt{box-shadow:0 0 7px rgba(166,227,161,.4)}
+.bar .fill.f-rf{box-shadow:0 0 9px rgba(116,199,236,.45),0 0 18px rgba(116,199,236,.18)}
+.bar .fill.f-xgb{box-shadow:0 0 10px rgba(203,166,247,.55),0 0 22px rgba(203,166,247,.22)}
+/* FP/FN number glows */
+.en.dt .n{text-shadow:0 0 12px rgba(166,227,161,.5)}
+.en.rf .n{text-shadow:0 0 18px rgba(116,199,236,.65),0 0 36px rgba(116,199,236,.25)}
+.en.xgb .n{text-shadow:0 0 14px rgba(203,166,247,.55)}
+/* err-type label */
+.err-type.fp{text-shadow:0 0 10px rgba(249,226,175,.4)}
+.err-type.fn{text-shadow:0 0 10px rgba(243,139,168,.4)}
+/* CV rows */
+.cv-row.cv-dt .cscore{text-shadow:0 0 10px rgba(166,227,161,.4)}
+.cv-row.cv-rf .cscore{text-shadow:0 0 12px rgba(116,199,236,.45)}
+.cv-row.winner-row{box-shadow:0 0 14px rgba(203,166,247,.22);border:1px solid rgba(203,166,247,.28)}
+.cv-row.winner-row .cscore{text-shadow:0 0 16px rgba(203,166,247,.6)}
+/* donut */
+.donut{box-shadow:0 0 22px rgba(137,180,250,.22),0 0 8px rgba(203,166,247,.18)}
+/* winner card */
+.winner{border-color:rgba(203,166,247,.58);box-shadow:0 0 0 1px rgba(203,166,247,.12),0 0 32px rgba(203,166,247,.2),0 0 90px rgba(203,166,247,.08),inset 0 0 50px rgba(203,166,247,.04)}
+.winner .wname{filter:drop-shadow(0 0 18px rgba(203,166,247,.55))}
+.winner .f1{text-shadow:0 0 28px rgba(148,226,213,.5),0 0 10px rgba(148,226,213,.35)}
+.winner .pm{text-shadow:0 0 14px rgba(148,226,213,.55)}
+/* feat panel */
+.fp-title{text-shadow:0 0 8px rgba(250,179,135,.4)}
+/* chip glow */
+.chip{box-shadow:0 0 10px rgba(180,190,254,.08)}
+/* mission glyph */
+.mission .glyph{text-shadow:0 0 16px rgba(243,139,168,.5)}
+/* pipeline step title */
+.step .st{text-shadow:0 0 8px rgba(205,214,244,.2)}
+
+/* === KEY FINDING === */
+.key-finding{
+  margin-top:10px;padding:9px 11px;border-radius:8px;
+  background:rgba(137,180,250,.08);border:1px solid rgba(137,180,250,.2);
+  font-size:9px;color:var(--subtext0);line-height:1.5;
+  box-shadow:0 0 12px rgba(137,180,250,.1)
+}
+.key-finding b{color:var(--blue)}
+.kf-label{display:block;font-family:var(--fm);font-size:8px;color:var(--blue);letter-spacing:1px;margin-bottom:5px;text-shadow:0 0 8px rgba(137,180,250,.4)}
+
+/* === XGB WATERMARK OVERRIDE === */
+.xgb-wm{opacity:.14 !important}
+
+.cv-note{font-size:8px;color:var(--overlay);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid rgba(88,91,112,.25)}
+.feat-note{font-size:8px;color:var(--overlay);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid rgba(88,91,112,.25)}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:9.5px;color:var(--overlay);padding:10px 20px 0}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot.r{background:var(--red)}.dot.y{background:var(--yellow)}.dot.g{background:var(--green)}
+.topbar .path{margin-left:6px;color:var(--subtext0)}
+.topbar .blink{color:var(--green);animation:blink 1.2s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.topbar .right{margin-left:auto;color:var(--overlay)}
+
+/* FOOTER */
+.foot{position:absolute;bottom:14px;right:20px;font-family:var(--fm);font-size:9.5px;color:var(--overlay);z-index:10}
+.foot .stack{display:flex;gap:5px;flex-wrap:wrap}
+.foot .tech{padding:3px 8px;border-radius:6px;background:rgba(49,50,68,.5);border:1px solid var(--surface0);color:var(--subtext0)}
+.foot .end{color:var(--green);text-shadow:0 0 10px rgba(166,227,161,.4)}
+
+/* CONFUSION MATRIX */
+.cm-panel{padding:13px 15px;display:flex;flex-direction:column;gap:8px}
+.cm-title{font-family:var(--fm);font-size:8.5px;color:var(--peach);letter-spacing:.5px}
+.cm-sub{font-family:var(--fm);font-size:8px;color:var(--overlay)}
+.cm-header-row{display:grid;grid-template-columns:24px 1fr 1fr;gap:5px;font-family:var(--fm);font-size:8px;color:var(--overlay);text-align:center}
+.cm-grid{display:grid;grid-template-columns:24px 1fr 1fr;gap:5px}
+.cm-side-label{font-family:var(--fm);font-size:8px;color:var(--overlay);writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center}
+.cm-cell{border-radius:8px;padding:9px 6px;text-align:center}
+.cm-val{font-family:var(--fd);font-weight:700;font-size:19px;line-height:1}
+.cm-type{font-family:var(--fm);font-size:7.5px;margin-top:3px;opacity:.85}
+.cm-cell.tn{background:rgba(148,226,213,.1);border:1px solid rgba(148,226,213,.3)}
+.cm-cell.tn .cm-val{color:var(--teal);text-shadow:0 0 10px rgba(148,226,213,.4)}
+.cm-cell.tn .cm-type{color:var(--teal)}
+.cm-cell.tp{background:rgba(116,199,236,.1);border:1px solid rgba(116,199,236,.3)}
+.cm-cell.tp .cm-val{color:var(--sapphire);text-shadow:0 0 10px rgba(116,199,236,.4)}
+.cm-cell.tp .cm-type{color:var(--sapphire)}
+.cm-cell.fp{background:rgba(249,226,175,.07);border:1px solid rgba(249,226,175,.25)}
+.cm-cell.fp .cm-val{color:var(--yellow)}
+.cm-cell.fp .cm-type{color:var(--yellow)}
+.cm-cell.fn{background:rgba(243,139,168,.12);border:1px solid rgba(243,139,168,.35)}
+.cm-cell.fn .cm-val{color:var(--red);text-shadow:0 0 12px rgba(243,139,168,.45)}
+.cm-cell.fn .cm-type{color:var(--red)}
+.cm-axis-labels{display:flex;justify-content:space-between;font-family:var(--fm);font-size:7.5px;color:var(--surface2)}
+.cm-note{font-size:8.5px;color:var(--overlay);line-height:1.45;padding-top:6px;border-top:1px solid rgba(88,91,112,.2)}
+.fp-b{color:var(--yellow)}.fn-b{color:var(--red)}
+.kf-label{display:none}
+
+@media print{
+  @page{size:A3 portrait;margin:0}
+  body{padding:0}
+  .poster{border-radius:0;box-shadow:none;width:297mm;height:420mm}
+}
+</style>
+</head>
+<body>
+<div class="poster">
+ <svg class="netbg" width="842" height="1260" viewBox="0 0 1190 1684" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#cba6f7" stroke-width="0.8" opacity="0.45"><line x1="55" y1="55" x2="110" y2="40"/><line x1="55" y1="55" x2="165" y2="72"/><line x1="55" y1="55" x2="82" y2="108"/><line x1="55" y1="55" x2="36" y2="92"/><line x1="55" y1="55" x2="138" y2="118"/><line x1="55" y1="55" x2="190" y2="50"/><line x1="110" y1="40" x2="165" y2="72"/><line x1="110" y1="40" x2="82" y2="108"/><line x1="110" y1="40" x2="36" y2="92"/><line x1="110" y1="40" x2="138" y2="118"/><line x1="110" y1="40" x2="190" y2="50"/><line x1="165" y1="72" x2="82" y2="108"/><line x1="165" y1="72" x2="36" y2="92"/><line x1="165" y1="72" x2="138" y2="118"/><line x1="165" y1="72" x2="190" y2="50"/><line x1="82" y1="108" x2="36" y2="92"/><line x1="82" y1="108" x2="138" y2="118"/><line x1="82" y1="108" x2="190" y2="50"/><line x1="36" y1="92" x2="138" y2="118"/><line x1="138" y1="118" x2="190" y2="50"/><line x1="1102" y1="42" x2="1158" y2="78"/><line x1="1102" y1="42" x2="1072" y2="112"/><line x1="1102" y1="42" x2="1138" y2="148"/><line x1="1102" y1="42" x2="1085" y2="52"/><line x1="1102" y1="42" x2="1040" y2="85"/><line x1="1158" y1="78" x2="1072" y2="112"/><line x1="1158" y1="78" x2="1138" y2="148"/><line x1="1158" y1="78" x2="1085" y2="52"/><line x1="1158" y1="78" x2="1040" y2="85"/><line x1="1072" y1="112" x2="1138" y2="148"/><line x1="1072" y1="112" x2="1085" y2="52"/><line x1="1072" y1="112" x2="1040" y2="85"/><line x1="1138" y1="148" x2="1085" y2="52"/><line x1="1138" y1="148" x2="1040" y2="85"/><line x1="1085" y1="52" x2="1040" y2="85"/><line x1="28" y1="498" x2="50" y2="578"/><line x1="50" y1="578" x2="24" y2="658"/><line x1="24" y1="658" x2="46" y2="748"/><line x1="46" y1="748" x2="29" y2="818"/><line x1="46" y1="748" x2="55" y2="888"/><line x1="29" y1="818" x2="55" y2="888"/><line x1="1150" y1="455" x2="1168" y2="538"/><line x1="1168" y1="538" x2="1148" y2="625"/><line x1="1148" y1="625" x2="1163" y2="718"/><line x1="1163" y1="718" x2="1142" y2="808"/><line x1="1142" y1="808" x2="1165" y2="895"/><line x1="42" y1="1478" x2="88" y2="1542"/><line x1="42" y1="1478" x2="48" y2="1602"/><line x1="42" y1="1478" x2="145" y2="1590"/><line x1="88" y1="1542" x2="48" y2="1602"/><line x1="88" y1="1542" x2="112" y2="1622"/><line x1="88" y1="1542" x2="68" y2="1652"/><line x1="88" y1="1542" x2="145" y2="1590"/><line x1="48" y1="1602" x2="112" y2="1622"/><line x1="48" y1="1602" x2="68" y2="1652"/><line x1="48" y1="1602" x2="145" y2="1590"/><line x1="112" y1="1622" x2="68" y2="1652"/><line x1="112" y1="1622" x2="145" y2="1590"/><line x1="68" y1="1652" x2="145" y2="1590"/><line x1="1102" y1="1430" x2="1142" y2="1508"/><line x1="1102" y1="1430" x2="1108" y2="1578"/><line x1="1102" y1="1430" x2="1080" y2="1490"/><line x1="1102" y1="1430" x2="1145" y2="1300"/><line x1="1142" y1="1508" x2="1108" y2="1578"/><line x1="1142" y1="1508" x2="1158" y2="1642"/><line x1="1142" y1="1508" x2="1128" y2="1658"/><line x1="1142" y1="1508" x2="1080" y2="1490"/><line x1="1108" y1="1578" x2="1158" y2="1642"/><line x1="1108" y1="1578" x2="1128" y2="1658"/><line x1="1108" y1="1578" x2="1080" y2="1490"/><line x1="1158" y1="1642" x2="1128" y2="1658"/><line x1="515" y1="1652" x2="602" y2="1668"/><line x1="602" y1="1668" x2="685" y2="1642"/><line x1="602" y1="1668" x2="755" y2="1665"/><line x1="685" y1="1642" x2="755" y2="1665"/><line x1="755" y1="1665" x2="840" y2="1648"/><line x1="78" y1="1200" x2="52" y2="1300"/><line x1="78" y1="1200" x2="40" y2="1100"/><line x1="1148" y1="1100" x2="1162" y2="1200"/><line x1="1162" y1="1200" x2="1145" y2="1300"/></g>
+  <g fill="#89b4fa" opacity="0.6"><circle cx="55" cy="55" r="3"/><circle cx="110" cy="40" r="3"/><circle cx="165" cy="72" r="3"/><circle cx="82" cy="108" r="3"/><circle cx="36" cy="92" r="3"/><circle cx="138" cy="118" r="3"/><circle cx="190" cy="50" r="3"/><circle cx="1102" cy="42" r="3"/><circle cx="1158" cy="78" r="3"/><circle cx="1072" cy="112" r="3"/><circle cx="1138" cy="148" r="3"/><circle cx="1085" cy="52" r="3"/><circle cx="1040" cy="85" r="3"/><circle cx="28" cy="498" r="3"/><circle cx="50" cy="578" r="3"/><circle cx="24" cy="658" r="3"/><circle cx="46" cy="748" r="3"/><circle cx="29" cy="818" r="3"/><circle cx="55" cy="888" r="3"/><circle cx="1150" cy="455" r="3"/><circle cx="1168" cy="538" r="3"/><circle cx="1148" cy="625" r="3"/><circle cx="1163" cy="718" r="3"/><circle cx="1142" cy="808" r="3"/><circle cx="1165" cy="895" r="3"/><circle cx="42" cy="1478" r="3"/><circle cx="88" cy="1542" r="3"/><circle cx="48" cy="1602" r="3"/><circle cx="112" cy="1622" r="3"/><circle cx="68" cy="1652" r="3"/><circle cx="145" cy="1590" r="3"/><circle cx="1102" cy="1430" r="3"/><circle cx="1142" cy="1508" r="3"/><circle cx="1108" cy="1578" r="3"/><circle cx="1158" cy="1642" r="3"/><circle cx="1128" cy="1658" r="3"/><circle cx="1080" cy="1490" r="3"/><circle cx="515" cy="1652" r="3"/><circle cx="602" cy="1668" r="3"/><circle cx="685" cy="1642" r="3"/><circle cx="755" cy="1665" r="3"/><circle cx="840" cy="1648" r="3"/><circle cx="78" cy="1200" r="3"/><circle cx="52" cy="1300" r="3"/><circle cx="40" cy="1100" r="3"/><circle cx="1148" cy="1100" r="3"/><circle cx="1162" cy="1200" r="3"/><circle cx="1145" cy="1300" r="3"/></g>
+</svg>
+<div class="aurora-pulse"></div>
+<div class="topbar">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="path">~/projects/network-intrusion-detection</span>
+    <span class="blink">█</span>
+    <span class="right">@nashirulwan</span>
+  </div>
+<div class="inner">
+
+  <!-- TOPBAR -->
+
+  <!-- HEADER -->
+  <div class="block">
+    <h1>Deteksi Intrusi Jaringan<br><span class="accent">dengan Model Berbasis Tree</span></h1>
+    <p class="subtitle">Tiga algoritma dibandingkan secara bertingkat untuk membedakan koneksi jaringan yang normal dari serangan (anomaly).</p>
+  </div>
+
+  <!-- MISSION -->
+  <div class="block">
+    <div class="card mission">
+      <div class="glyph">&gt;_</div>
+      <p>Tujuannya menebak apakah sebuah koneksi <span class="ok">normal</span> atau <b>anomaly</b> (serangan). Dalam konteks keamanan, <b>false negative</b> (serangan yang lolos tak terdeteksi) jauh lebih berbahaya daripada false positive. Maka <span class="ok">recall</span> dan jumlah FN menjadi metrik yang paling diperhatikan.</p>
+    </div>
+  </div>
+
+  <!-- DATA UNDERSTANDING -->
+  <div class="block">
+    <div class="sec-label"><span class="num">1</span> DATA UNDERSTANDING</div>
+    <div class="data-grid">
+      <div class="card stat"><div class="big">25.192</div><div class="lbl">total koneksi jaringan</div></div>
+      <div class="card stat"><div class="big">41</div><div class="lbl">fitur per koneksi</div></div>
+      <div class="card stat"><div class="big">2</div><div class="lbl">kelas target</div></div>
+      <div class="card stat">
+        <div class="split">
+          <div class="donut"></div>
+          <div class="dleg">
+            <div><span class="k kn"></span><b>13.449</b> normal</div>
+            <div><span class="k ka"></span><b>11.743</b> anomaly</div>
+            <div style="color:var(--overlay);margin-top:6px;font-size:8px">53.4% / 46.6%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODELS -->
+  <div class="block">
+    <div class="sec-label"><span class="num">2</span> TIGA MODEL · SEDERHANA KE KOMPLEKS</div>
+    <div class="models">
+
+      <!-- DT -->
+      <div class="card model m1">
+        <svg class="wm" width="110" height="100" viewBox="0 0 100 90" fill="none" stroke="#a6e3a1" stroke-width="2.5" stroke-linecap="round">
+          <circle cx="50" cy="78" r="8" fill="#a6e3a1"/>
+          <circle cx="25" cy="50" r="6" fill="#a6e3a1"/><circle cx="75" cy="50" r="6" fill="#a6e3a1"/>
+          <circle cx="12" cy="24" r="5" fill="#a6e3a1"/><circle cx="38" cy="24" r="5" fill="#a6e3a1"/>
+          <circle cx="62" cy="24" r="5" fill="#a6e3a1"/><circle cx="88" cy="24" r="5" fill="#a6e3a1"/>
+          <line x1="50" y1="70" x2="25" y2="56"/><line x1="50" y1="70" x2="75" y2="56"/>
+          <line x1="25" y1="44" x2="12" y2="29"/><line x1="25" y1="44" x2="38" y2="29"/>
+          <line x1="75" y1="44" x2="62" y2="29"/><line x1="75" y1="44" x2="88" y2="29"/>
+        </svg>
+        <div class="idx">[01] baseline</div>
+        <div class="mname">Decision Tree</div>
+        <div class="tag">single tree</div>
+        <div class="desc">Satu pohon keputusan. Tiap node memilih fitur dan threshold terbaik untuk memisahkan data. Mudah diinterpretasi, rentan overfitting jika tidak dibatasi.</div>
+        <div class="params">
+          <code>criterion=entropy · max_depth=10</code><br>
+          <code>min_samples_split=10 · class_weight=balanced</code>
+        </div>
+      </div>
+
+      <!-- RF -->
+      <div class="card model m2">
+        <svg class="wm" width="110" height="100" viewBox="0 0 110 90" fill="none" stroke="#74c7ec" stroke-width="2" stroke-linecap="round">
+          <circle cx="20" cy="72" r="6" fill="#74c7ec"/><line x1="20" y1="66" x2="10" y2="52"/><line x1="20" y1="66" x2="30" y2="52"/>
+          <circle cx="10" cy="46" r="4" fill="#74c7ec"/><circle cx="30" cy="46" r="4" fill="#74c7ec"/>
+          <circle cx="55" cy="72" r="6" fill="#74c7ec"/><line x1="55" y1="66" x2="45" y2="52"/><line x1="55" y1="66" x2="65" y2="52"/>
+          <circle cx="45" cy="46" r="4" fill="#74c7ec"/><circle cx="65" cy="46" r="4" fill="#74c7ec"/>
+          <circle cx="90" cy="72" r="6" fill="#74c7ec"/><line x1="90" y1="66" x2="80" y2="52"/><line x1="90" y1="66" x2="100" y2="52"/>
+          <circle cx="80" cy="46" r="4" fill="#74c7ec"/><circle cx="100" cy="46" r="4" fill="#74c7ec"/>
+          <line x1="20" y1="78" x2="55" y2="78" stroke-dasharray="4 3" opacity=".4"/>
+          <line x1="55" y1="78" x2="90" y2="78" stroke-dasharray="4 3" opacity=".4"/>
+        </svg>
+        <div class="idx">[02] bagging</div>
+        <div class="mname">Random Forest</div>
+        <div class="tag">parallel · voting</div>
+        <div class="desc">Banyak tree dilatih paralel, masing-masing pada subset data dan fitur acak (bootstrap sampling). Prediksi akhir dari majority voting.</div>
+        <div class="params">
+          <code>n_estimators=300 · max_features=sqrt</code><br>
+          <code>class_weight=balanced</code>
+        </div>
+      </div>
+
+      <!-- XGB -->
+      <div class="card model m3">
+        <svg class="wm xgb-wm" width="140" height="120" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <filter id="lglow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <polygon points="56,6 36,46 50,46 44,94 70,44 54,44 56,6" fill="#cba6f7" opacity=".65" filter="url(#lglow)" stroke="none"/>
+          <polygon points="56,6 36,46 50,46 44,94 70,44 54,44 56,6" fill="none" stroke="#cba6f7" stroke-width="1.5" opacity=".3"/>
+        </svg>
+        <div class="idx">[03] boosting</div>
+        <div class="mname">XGBoost</div>
+        <div class="tag">sequential · gradient</div>
+        <div class="desc">Tree dibangun bertahap; tiap tree baru memperbaiki kesalahan tree sebelumnya. Regularisasi bawaan mencegah overfitting secara otomatis.</div>
+        <div class="params">
+          <code>n_estimators=200 · learning_rate=0.05</code><br>
+          <code>subsample=0.8 · scale_pos_weight=1.14</code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="block">
+    <div class="sec-label"><span class="num">3</span> ALUR KERJA</div>
+    <div class="card pipeline">
+      <div class="step">
+        <div class="ico">// step 01</div>
+        <div class="st">Preprocessing</div>
+        <div class="sd">One-Hot Encoding (protocol, service, flag) · drop zero-variance cols · stratified split 70/30</div>
+      </div>
+      <div class="arr">▶</div>
+      <div class="step">
+        <div class="ico">// step 02</div>
+        <div class="st">Grid Search</div>
+        <div class="sd">Cari kombinasi parameter terbaik via 5-Fold Cross-Validation · skor F1 sebagai acuan</div>
+      </div>
+      <div class="arr">▶</div>
+      <div class="step">
+        <div class="ico">// step 03</div>
+        <div class="st">Evaluation</div>
+        <div class="sd">Uji performa di test set (30%) · validasi ulang dengan 5-Fold Cross-Validation di seluruh data</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="block">
+    <div class="sec-label"><span class="num">4</span> HASIL EVALUASI</div>
+    <div class="results">
+      <!-- LEFT: metric bars -->
+      <div class="card metric-table">
+        <h3>Perbandingan Metrik · Test Set 30%</h3>
+        <div class="mrow">
+          <div class="mlabel">F1-Score</div>
+          <div class="bars">
+            <div class="bar"><div class="fill f-dt" style="width:88%"><span class="v">DT 0.9943</span></div></div>
+            <div class="bar"><div class="fill f-rf" style="width:93.8%"><span class="v">RF 0.9969</span></div></div>
+            <div class="bar"><div class="fill f-xgb" style="width:92.8%"><span class="v">XGB 0.9964</span></div></div>
+          </div>
+        </div>
+        <div class="mrow">
+          <div class="mlabel">Precision</div>
+          <div class="bars">
+            <div class="bar"><div class="fill f-dt" style="width:88.2%"><span class="v">DT 0.9946</span></div></div>
+            <div class="bar"><div class="fill f-rf" style="width:98.2%"><span class="v">RF 0.9991</span></div></div>
+            <div class="bar"><div class="fill f-xgb" style="width:96.6%"><span class="v">XGB 0.9983</span></div></div>
+          </div>
+        </div>
+        <div class="mrow">
+          <div class="mlabel">Recall</div>
+          <div class="bars">
+            <div class="bar"><div class="fill f-dt" style="width:88%"><span class="v">DT 0.9940</span></div></div>
+            <div class="bar"><div class="fill f-rf" style="width:89.2%"><span class="v">RF 0.9946</span></div></div>
+            <div class="bar"><div class="fill f-xgb" style="width:89.2%"><span class="v">XGB 0.9946</span></div></div>
+          </div>
+        </div>
+        <div class="mrow">
+          <div class="mlabel">ROC-AUC</div>
+          <div class="bars">
+            <div class="bar"><div class="fill f-dt" style="width:94.2%"><span class="v">DT 0.9971</span></div></div>
+            <div class="bar"><div class="fill f-rf" style="width:99.8%"><span class="v">RF 0.9999</span></div></div>
+            <div class="bar"><div class="fill f-xgb" style="width:99.8%"><span class="v">XGB 0.9999</span></div></div>
+          </div>
+        </div>
+        <div class="mrow">
+          <div class="mlabel">Specificity</div>
+          <div class="bars">
+            <div class="bar"><div class="fill f-dt" style="width:90.6%"><span class="v">DT 0.9953</span></div></div>
+            <div class="bar"><div class="fill f-rf" style="width:99.6%"><span class="v">RF 0.9993</span></div></div>
+            <div class="bar"><div class="fill f-xgb" style="width:97%"><span class="v">XGB 0.9985</span></div></div>
+          </div>
+        </div>
+        <div class="mrow">
+          <div class="mlabel">Accuracy</div>
+          <div class="bars">
+            <div class="bar"><div class="fill f-dt" style="width:89.4%"><span class="v">DT 0.9947</span></div></div>
+            <div class="bar"><div class="fill f-rf" style="width:94.2%"><span class="v">RF 0.9971</span></div></div>
+            <div class="bar"><div class="fill f-xgb" style="width:93.4%"><span class="v">XGB 0.9967</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FP/FN + CV -->
+      <div class="card right-panel">
+        <div>
+          <h3 style="font-family:var(--fd);font-weight:600;font-size:8.5px;color:var(--text);margin-bottom:12px">Kesalahan Prediksi</h3>
+          <div class="err-block">
+            <div class="err-type fp">False Positive</div>
+            <div class="errnums">
+              <div class="en dt"><div class="n">19</div><div class="m">DT</div></div>
+              <div class="en rf"><div class="n">3</div><div class="m">RF</div></div>
+              <div class="en xgb"><div class="n">6</div><div class="m">XGB</div></div>
+            </div>
+          </div>
+          <div style="margin-top:7px;margin-bottom:10px">
+            <div class="err-type fn">False Negative ⚠</div>
+            <div class="errnums">
+              <div class="en dt"><div class="n">21</div><div class="m">DT</div></div>
+              <div class="en rf"><div class="n">19</div><div class="m">RF</div></div>
+              <div class="en xgb"><div class="n">19</div><div class="m">XGB</div></div>
+            </div>
+          </div>
+          <div class="cv-title">5-FOLD CROSS-VALIDATION · F1</div>
+          <div class="cv-row cv-dt">
+            <span class="cname">Decision Tree</span>
+            <span>
+              <span class="cscore">0.9954</span>
+              <span class="cstd"> ±0.0011</span>
+            </span>
+          </div>
+          <div class="cv-row cv-rf">
+            <span class="cname">Random Forest</span>
+            <span>
+              <span class="cscore">0.9973</span>
+              <span class="cstd"> ±0.0015</span>
+            </span>
+          </div>
+          <div class="cv-row winner-row">
+            <span class="cname">XGBoost ★</span>
+            <span>
+              <span class="cscore">0.9976</span>
+              <span class="cstd"> ±0.0012</span>
+            </span>
+          </div>
+          <p class="cv-note">False Positive (FP): koneksi normal yang salah diklasifikasi sebagai serangan. False Negative (FN): serangan nyata yang lolos dan tidak terdeteksi oleh model.</p>
+        </div>
+      </div>
+      <!-- COL 3: FEATURE IMPORTANCE -->
+      <div class="card cm-panel">
+        <div class="cm-title">CONFUSION MATRIX · XGBOOST</div>
+        <div class="cm-sub">Test Set 30% &nbsp;·&nbsp; 7.558 sampel</div>
+        <div class="cm-header-row">
+          <span></span>
+          <span class="cm-pred-label">Pred. Normal</span>
+          <span class="cm-pred-label">Pred. Anomaly</span>
+        </div>
+        <div class="cm-grid">
+          <span class="cm-side-label">Normal</span>
+          <div class="cm-cell tn">
+            <div class="cm-val">4.029</div>
+            <div class="cm-type">True Negative</div>
+          </div>
+          <div class="cm-cell fp">
+            <div class="cm-val">6</div>
+            <div class="cm-type">False Positive</div>
+          </div>
+          <span class="cm-side-label">Anomaly</span>
+          <div class="cm-cell fn">
+            <div class="cm-val">19</div>
+            <div class="cm-type">False Negative ⚠</div>
+          </div>
+          <div class="cm-cell tp">
+            <div class="cm-val">3.504</div>
+            <div class="cm-type">True Positive</div>
+          </div>
+        </div>
+        <div class="cm-axis-labels">
+          <span class="cm-ax-side">↑ AKTUAL</span>
+          <span class="cm-ax-top">PREDIKSI →</span>
+        </div>
+        <p class="cm-note">FN paling kritis: serangan nyata yang lolos tidak terdeteksi oleh model.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINNER
+
+  <!-- WINNER
+
+  <!-- WINNER -->
+  <div class="block">
+    <div class="card winner">
+      <div>
+        <div class="crown">★ BEST MODEL</div>
+        <div class="wname">XGBoost</div>
+        <div class="wdesc">F1 cross-validation tertinggi sekaligus paling stabil (std terkecil). Performa konsisten di berbagai pembagian data. Random Forest menjadi alternatif setara; Decision Tree tertinggal terutama pada false positive (19 vs 3 dan 6).</div>
+      </div>
+      <div class="wstats">
+        <div class="f1">0.9976<span class="pm"> ±0.0012</span></div>
+        <div class="f1lbl">F1 · 5-FOLD CROSS-VALIDATION</div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="foot">
+    <span class="end">$ exit 0_</span>
+  </div>
+ </div>
+</div>
+</body>
+</html>
